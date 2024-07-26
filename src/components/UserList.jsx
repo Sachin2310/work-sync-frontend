@@ -103,9 +103,9 @@ const UserList = ({ userList }) => {
 
                             </tbody>
                         </table>
-                        <div className="w-full mt-5 flex justify-center">
+                        {userList === "vendor" && <div className="w-full mt-5 flex justify-center">
                             <button className="w-2/4 bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600" onClick={getEmails}>Send Email</button>
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>
