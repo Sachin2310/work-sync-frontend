@@ -1,7 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setEmailList } from "../redux/additionalStates";
+import { useSelector } from "react-redux";
 
 
 const EmailTemplate = () => {

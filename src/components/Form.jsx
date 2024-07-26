@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useState } from "react"
 import { useDispatch } from 'react-redux'
-import { setEmployeType, setShowUserList } from '../redux/additionalStates'
 import { addEmployee } from '../redux/employeeSlice'
 import { addVendor } from '../redux/vendorSlice'
 import { useNavigate } from 'react-router-dom'

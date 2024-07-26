@@ -12,7 +12,7 @@ const SideBar = () => {
             <nav className={`bg-white shadow-md`}>
                 <div className="mx-auto px-6 py-3 flex justify-between items-center">
                     <div className="text-xl font-bold text-gray-800">
-                        <a href="#">Brand</a>
+                        <a href="#">Work Sync</a>
                     </div>
                     <div className="block lg:hidden">
                         <button className="text-gray-800 focus:outline-none" id="navbar-toggle">
