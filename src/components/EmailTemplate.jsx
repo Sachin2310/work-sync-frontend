@@ -16,7 +16,7 @@ const EmailTemplate = () => {
 
         <div className="w-5/12 flex flex-col m-auto">
             <div className="mt-20 mb-16">
-                {emails ?
+                {(emails && emails.length>0)?
                     emails.map(email => {
                         return <>
 
