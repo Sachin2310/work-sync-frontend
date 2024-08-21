@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setEmployeeList } from "../redux/employeeSlice";
 import { setVendorList } from "../redux/vendorSlice";
 import { useNavigate } from "react-router-dom";
 import { setEmailSendersList } from "../redux/additionalStates";
+import axiosClient from "../js/AxiosInstance";
 
 const UserList = ({ userList }) => {
   const [users, setUsers] = useState([]);
@@ -15,21 +15,14 @@ const UserList = ({ userList }) => {
   const employees = useSelector((state) => state.employee.employees);
   const vendors = useSelector((state) => state.vendor.vendors);
   const emails = useSelector((state) => state.additionalStates.emails);
-
-  // const accessToken = useSelector(state => {
-  //     console.log("check: "+JSON.stringify(state.tokens.tokens));
-  //     return state.tokens.tokens.token
-  // });
   const accessToken = localStorage.getItem("token");
-  const axiosClient = axios.create({
-    baseURL: `http://localhost:8080/worksync/api`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
 
   const getUsers = async () => {
-    const response = await axiosClient.get(`/${userList}`);
+    const response = await axiosClient.get(`/${userList}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     const users = response.data;
     if (userList === "employee") {
       dispatch(setEmployeeList(users));
@@ -52,7 +45,11 @@ const UserList = ({ userList }) => {
   }, []);
 
   const sendEmails = async () => {
-    const response = await axiosClient.post(`/email`, sendersList);
+    const response = await axiosClient.post(`/email`, sendersList, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     const vendorsInfo = response.data;
     if (vendorsInfo) {
       dispatch(setEmailSendersList([...emails, ...vendorsInfo]));
@@ -99,7 +96,10 @@ const UserList = ({ userList }) => {
               <tbody>
                 {users.map((user, id) => {
                   return (
-                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr
+                      key={id}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
                       <th
                         scope="row"
                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"

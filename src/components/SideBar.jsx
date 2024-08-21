@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { redirectToLoginPage } from "../js/AxiosInstance";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -79,6 +80,12 @@ const SideBar = () => {
                   >
                     Emails
                   </li>
+                  <li
+                    className="block text-gray-800 py-2 px-4 cursor-pointer"
+                    onClick={redirectToLoginPage}
+                  >
+                    Logout
+                  </li>
                 </>
               ) : (
                 <>
@@ -89,14 +96,6 @@ const SideBar = () => {
                     }}
                   >
                     SignUp
-                  </li>
-                  <li
-                    className="block text-gray-800 py-2 px-4 cursor-pointer"
-                    onClick={() => {
-                      navigate("/login-form");
-                    }}
-                  >
-                    Login
                   </li>
                 </>
               )}

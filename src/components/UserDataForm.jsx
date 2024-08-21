@@ -1,22 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addEmployee } from "../redux/employeeSlice";
 import { addVendor } from "../redux/vendorSlice";
 import { useNavigate } from "react-router-dom";
+import axiosClient from "../js/AxiosInstance";
 
 const Form = ({ userform }) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const accessToken = localStorage.getItem("token");
-  const axiosClient = axios.create({
-    baseURL: `http://localhost:8080/worksync/api`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -44,7 +38,12 @@ const Form = ({ userform }) => {
 
     const response = await axiosClient.post(
       `/${userType}`,
-      userType === "employee" ? employeeField : vendorField
+      userType === "employee" ? employeeField : vendorField,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
 
     if (response.data) {

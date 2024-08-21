@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Form from "./components/UserDataForm";
 import SideBar from "./components/SideBar";
@@ -11,11 +11,14 @@ import { useEffect } from "react";
 function App() {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("token");
+
   useEffect(() => {
     if (!accessToken) {
       navigate("/login-form");
+      return;
     }
   }, []);
+
   return (
     <>
       <SideBar />

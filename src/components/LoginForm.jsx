@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToken } from "../redux/accessTokenSlice";
+import axiosClient from "../js/AxiosInstance";
 
 const LoginForm = ({ isSignUp }) => {
   const [userDetails, setUserDetails] = useState({});
   const dispatch = useDispatch();
-  const axiosClient = axios.create({
-    baseURL: "http://localhost:8080/worksync/api/auth",
-  });
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -24,13 +22,20 @@ const LoginForm = ({ isSignUp }) => {
       ...userDetails,
     };
     const response = await axiosClient.post(
-      isSignUp ? `signup` : `login`,
+      isSignUp ? `/auth/signup` : `/auth/login`,
       RequestBody
     );
     console.log(response);
-    if (!isSignUp) {
+
+    if (isSignUp) {
+      navigate("/login-form");
+      return;
+    } else {
       dispatch(addToken(response.data));
       localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("current-user", userDetails.email);
+      navigate("/");
+      return;
     }
   }
 
