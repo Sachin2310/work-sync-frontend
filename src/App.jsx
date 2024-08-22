@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
-import Form from "./components/UserDataForm";
+import Form from "./components/DataForm";
 import SideBar from "./components/SideBar";
 import UserList from "./components/UserList";
 import EmailTemplate from "./components/EmailTemplate";

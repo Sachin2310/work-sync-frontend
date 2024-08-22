@@ -1,6 +1,5 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addEmployee } from "../redux/employeeSlice";
 import { addVendor } from "../redux/vendorSlice";
 import { useNavigate } from "react-router-dom";

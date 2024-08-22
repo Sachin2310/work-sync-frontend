@@ -5,7 +5,7 @@ import { setVendorList } from "../redux/vendorSlice";
 import { useNavigate } from "react-router-dom";
 import { setEmailSendersList } from "../redux/additionalStates";
 import axiosClient from "../js/AxiosInstance";
-import RightDrawer from "./UserInputDrawer";
+import RightDrawer from "./InputDrawer";
 
 const UserList = ({ userList }) => {
   const [users, setUsers] = useState([]);

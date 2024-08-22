@@ -29,17 +29,9 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     console.log("Error Interceptor:", error);
-
-    //show error message instead
-
-    // if (
-    //   error.response.data?.message ===
-    //   "User not found with email: " + localStorage.getItem("current-user")
-    // ) {
-    //   redirectToSignUpPage();
-    //   // return Promise.reject(error);
-    //   return;
-    // }
+    if ((error.response.data?.message).includes("User not found with email")) {
+      return Promise.reject(error);
+    }
 
     if (error.response.status === 401 || error.response.status === 403) {
       updateToken();
