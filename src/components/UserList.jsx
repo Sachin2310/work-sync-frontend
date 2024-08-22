@@ -5,10 +5,12 @@ import { setVendorList } from "../redux/vendorSlice";
 import { useNavigate } from "react-router-dom";
 import { setEmailSendersList } from "../redux/additionalStates";
 import axiosClient from "../js/AxiosInstance";
+import RightDrawer from "./UserInputDrawer";
 
 const UserList = ({ userList }) => {
   const [users, setUsers] = useState([]);
   const [sendersList, setSendersList] = useState([]);
+  const [refresh, setRefresh] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ const UserList = ({ userList }) => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [refresh, userList]);
 
   const sendEmails = async () => {
     const response = await axiosClient.post(`/email`, sendersList, {
@@ -66,6 +68,10 @@ const UserList = ({ userList }) => {
       setSendersList(updatedSendersList);
     }
   }
+
+  const handleDrawerClose = () => {
+    setRefresh((prev) => prev + 1);
+  };
 
   return (
     <div className="bg-gray-100 flex items-start justify-center min-h-screen">
@@ -135,6 +141,7 @@ const UserList = ({ userList }) => {
           </div>
         </div>
       </div>
+      <RightDrawer userType={userList} onClose={handleDrawerClose} />
     </div>
   );
 };

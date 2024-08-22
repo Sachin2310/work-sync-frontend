@@ -43,22 +43,6 @@ const SideBar = () => {
                   <li
                     className="block text-gray-800 py-2 px-4 cursor-pointer"
                     onClick={() => {
-                      navigate("/employee-form");
-                    }}
-                  >
-                    Create Employees
-                  </li>
-                  <li
-                    className="block text-gray-800 py-2 px-4 cursor-pointer"
-                    onClick={() => {
-                      navigate("/vendor-form");
-                    }}
-                  >
-                    Create Vendors
-                  </li>
-                  <li
-                    className="block text-gray-800 py-2 px-4 cursor-pointer"
-                    onClick={() => {
                       navigate("/employee-list");
                     }}
                   >

@@ -6,7 +6,7 @@ import { addVendor } from "../redux/vendorSlice";
 import { useNavigate } from "react-router-dom";
 import axiosClient from "../js/AxiosInstance";
 
-const Form = ({ userform }) => {
+const Form = ({ userform, onClose }) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -55,6 +55,7 @@ const Form = ({ userform }) => {
         navigate("/vendor-list");
       }
     }
+    onClose();
   }
 
   return (
@@ -62,7 +63,7 @@ const Form = ({ userform }) => {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-20">
         <h2 className="text-2xl flex justify-center font-bold mb-6 text-gray-800">
           {" "}
-          Create {userform}
+          Add {userform}
         </h2>
         <div>
           <div className="mb-4">
@@ -136,7 +137,7 @@ const Form = ({ userform }) => {
               className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
               onClick={() => handleClick(userform)}
             >
-              create
+              Add
             </button>
           </div>
         </div>
