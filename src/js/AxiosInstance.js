@@ -29,10 +29,18 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     console.log("Error Interceptor:", error);
-    if ((error.response.data?.message).includes("User not found with email")) {
+    if (
+      error.message === "Network Error" &&
+      window.location.pathname !== "/login-form"
+    ) {
+      redirectToLoginPage();
+    }
+    if (
+      !error.resposne ||
+      (error.response.data?.message).includes("User not found with email")
+    ) {
       return Promise.reject(error);
     }
-
     if (error.response.status === 401 || error.response.status === 403) {
       updateToken();
       return;

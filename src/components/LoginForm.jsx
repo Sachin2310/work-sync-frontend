@@ -45,7 +45,7 @@ const LoginForm = ({ isSignUp }) => {
     } catch (error) {
       setSnackbarOpen(true);
       setAxiosErrorMessage(
-        error.response?.data?.message || "Something went wrong."
+        error.response?.data?.message || error.message || "Something went wrong"
       );
     }
   }

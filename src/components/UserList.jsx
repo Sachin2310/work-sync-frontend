@@ -134,7 +134,7 @@ const UserList = ({ userList }) => {
                   className="w-2/4 bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
                   onClick={sendEmails}
                 >
-                  Send Email
+                  Send Payouts
                 </button>
               </div>
             )}
