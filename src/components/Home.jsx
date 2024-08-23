@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <>
+    <div className="mt-20">
       <p>
         The application is designed to manage employee and vendor data
         efficiently, ensuring accurate record-keeping. It includes robust
@@ -8,7 +8,7 @@ const Home = () => {
         platform facilitates seamless vendor payouts, enhancing financial and
         operational efficiency.
       </p>
-    </>
+    </div>
   );
 };
 

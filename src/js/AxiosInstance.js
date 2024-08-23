@@ -35,10 +35,7 @@ axiosClient.interceptors.response.use(
     ) {
       redirectToLoginPage();
     }
-    if (
-      !error.resposne ||
-      (error.response.data?.message).includes("User not found with email")
-    ) {
+    if ((error.response.data?.message).includes("User not found with email")) {
       return Promise.reject(error);
     }
     if (error.response.status === 401 || error.response.status === 403) {

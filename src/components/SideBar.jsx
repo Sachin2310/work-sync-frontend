@@ -10,8 +10,13 @@ const SideBar = () => {
     <>
       <nav className={`bg-white shadow-md custom-sidebar`}>
         <div className="mx-auto px-6 py-3 flex justify-between items-center">
-          <div className="text-xl font-bold text-gray-800">
-            <a href="/">Work Sync</a>
+          <div
+            className="text-xl font-bold text-gray-800 cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Work Sync
           </div>
           <div className="block lg:hidden">
             <button
