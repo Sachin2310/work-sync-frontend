@@ -22,19 +22,21 @@ function App() {
   return (
     <>
       <SideBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signUp-form" element={<LoginForm isSignUp={true} />} />
-        <Route path="/login-form" element={<LoginForm isSignUp={false} />} />
-        <Route path="/employee-form" element={<Form userform="employee" />} />
-        <Route path="/vendor-form" element={<Form userform="vendor" />} />
-        <Route
-          path="/employee-list"
-          element={<UserList userList="employee" />}
-        />
-        <Route path="/vendor-list" element={<UserList userList="vendor" />} />
-        <Route path="/emails" element={<EmailTemplate />} />
-      </Routes>
+      <div style={{ paddingTop: "15px" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signUp-form" element={<LoginForm isSignUp={true} />} />
+          <Route path="/login-form" element={<LoginForm isSignUp={false} />} />
+          <Route path="/employee-form" element={<Form userform="employee" />} />
+          <Route path="/vendor-form" element={<Form userform="vendor" />} />
+          <Route
+            path="/employee-list"
+            element={<UserList userList="employee" />}
+          />
+          <Route path="/vendor-list" element={<UserList userList="vendor" />} />
+          <Route path="/emails" element={<EmailTemplate />} />
+        </Routes>
+      </div>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Profile from "./Profile";
+import "../assets/Custom.css";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const SideBar = () => {
 
   return (
     <>
-      <nav className={`bg-white shadow-md`}>
+      <nav className={`bg-white shadow-md custom-sidebar`}>
         <div className="mx-auto px-6 py-3 flex justify-between items-center">
           <div className="text-xl font-bold text-gray-800">
             <a href="/">Work Sync</a>
