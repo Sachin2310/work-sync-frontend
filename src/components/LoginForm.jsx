@@ -20,7 +20,8 @@ const LoginForm = ({ isSignUp }) => {
     });
   }
 
-  async function handleClick() {
+  async function handleClick(e) {
+    e.preventDefault();
     const RequestBody = {
       ...userDetails,
     };
@@ -51,7 +52,10 @@ const LoginForm = ({ isSignUp }) => {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-20">
+    <form
+      onSubmit={handleClick}
+      className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-20"
+    >
       <h2 className="text-2xl flex justify-center font-bold mb-6 text-gray-800">
         {" "}
         {isSignUp ? "SignUp" : "Login"}
@@ -111,8 +115,8 @@ const LoginForm = ({ isSignUp }) => {
       )}
       <div>
         <button
+          type="submit"
           className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
-          onClick={(e) => handleClick(e)}
         >
           {isSignUp ? "SignUp" : "Login"}
         </button>
@@ -122,7 +126,7 @@ const LoginForm = ({ isSignUp }) => {
         toOpen={snackbarOpen}
         setToOpen={setSnackbarOpen}
       />
-    </div>
+    </form>
   );
 };
 

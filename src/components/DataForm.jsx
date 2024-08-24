@@ -19,7 +19,8 @@ const Form = ({ userform, onClose }) => {
     });
   }
 
-  async function handleClick(userType) {
+  async function handleClick(e, userType) {
+    e.preventDefault();
     const commonFields = {
       email: user.email,
       name: user.name,
@@ -59,7 +60,10 @@ const Form = ({ userform, onClose }) => {
 
   return (
     <>
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-20">
+      <form
+        onSubmit={(e) => handleClick(e, userform)}
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-20"
+      >
         <h2 className="text-2xl flex justify-center font-bold mb-6 text-gray-800">
           {" "}
           Add {userform}
@@ -133,14 +137,14 @@ const Form = ({ userform, onClose }) => {
           )}
           <div>
             <button
+              type="submit"
               className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
-              onClick={() => handleClick(userform)}
             >
               Add
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };

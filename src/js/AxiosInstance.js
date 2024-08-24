@@ -7,12 +7,16 @@ const axiosClient = axios.create({
 
 export const redirectToLoginPage = () => {
   localStorage.removeItem("token");
-  window.location.href = "/login-form";
+  if (window.location.pathname !== "/login-form") {
+    window.location.href = "/login-form";
+  }
 };
 
 export const redirectToSignUpPage = () => {
   localStorage.removeItem("token");
-  window.location.href = "/signUp-form";
+  if (window.location.pathname !== "/signUp-form") {
+    window.location.href = "/signUp-form";
+  }
 };
 
 const updateToken = async () => {
@@ -29,16 +33,11 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     console.log("Error Interceptor:", error);
-    if (
-      error.message === "Network Error" &&
-      window.location.pathname !== "/login-form"
-    ) {
+    if (error.response?.data?.message?.includes("User not found with email")) {
       redirectToLoginPage();
-    }
-    if ((error.response.data?.message).includes("User not found with email")) {
       return Promise.reject(error);
     }
-    if (error.response.status === 401 || error.response.status === 403) {
+    if (error.response?.status === 401 || error.response?.status === 403) {
       updateToken();
       return;
     }
