@@ -2,7 +2,7 @@ import axios from "axios";
 import { generateToken } from "./TokenManager";
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:8080/worksync/api",
+  baseURL: "https://worksync-backend.onrender.com/worksync/api",
 });
 
 export const redirectToLoginPage = () => {
