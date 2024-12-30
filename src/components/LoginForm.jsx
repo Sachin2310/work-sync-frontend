@@ -145,7 +145,7 @@ const LoginForm = ({ isSignUp }) => {
           onClick={useTestAccountToLogin}
           className="block w-52 text-center bg-indigo-400 text-white py-1 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
         >
-          Use a test account instead
+          Try with a test account
         </a>
       </div>
       <ErrorSnackbar
