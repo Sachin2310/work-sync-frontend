@@ -7,10 +7,13 @@ import EmailTemplate from "./components/EmailTemplate";
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
 import { useEffect } from "react";
+import Loader from "./components/Loader";
+import { useSelector } from "react-redux";
 
 function App() {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("token");
+  const isLoading = useSelector((state) => state.loader.isLoading);
 
   useEffect(() => {
     if (!accessToken) {
@@ -21,6 +24,7 @@ function App() {
 
   return (
     <>
+      {isLoading && <Loader />}
       <SideBar />
       <div style={{ paddingTop: "15px" }}>
         <Routes>

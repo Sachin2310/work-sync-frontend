@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { setEmailSendersList } from "../redux/additionalStates";
 import axiosClient from "../js/AxiosInstance";
 import RightDrawer from "./InputDrawer";
+import { startLoading, stopLoading } from "../redux/loaderSlice";
 
 const UserList = ({ userList }) => {
   const [users, setUsers] = useState([]);
@@ -20,11 +21,14 @@ const UserList = ({ userList }) => {
   const accessToken = localStorage.getItem("token");
 
   const getUsers = async () => {
+    dispatch(startLoading());
     const response = await axiosClient.get(`/${userList}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+    dispatch(stopLoading());
+
     const users = response.data;
     if (userList === "employee") {
       dispatch(setEmployeeList(users));

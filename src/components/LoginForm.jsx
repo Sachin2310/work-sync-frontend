@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToken } from "../redux/accessTokenSlice";
 import axiosClient from "../js/AxiosInstance";
 import ErrorSnackbar from "./ErrorSnackbar";
+import { startLoading, stopLoading } from "../redux/loaderSlice";
 
 const LoginForm = ({ isSignUp }) => {
   const [userDetails, setUserDetails] = useState({});
@@ -27,6 +28,7 @@ const LoginForm = ({ isSignUp }) => {
     };
 
     try {
+      dispatch(startLoading());
       const response = await axiosClient.post(
         isSignUp ? `/auth/signup` : `/auth/login`,
         RequestBody
@@ -48,6 +50,8 @@ const LoginForm = ({ isSignUp }) => {
       setAxiosErrorMessage(
         error.response?.data?.message || error.message || "Something went wrong"
       );
+    } finally {
+      dispatch(stopLoading());
     }
   }
 
