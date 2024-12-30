@@ -11,13 +11,15 @@ const SideBar = () => {
       <nav className={`bg-white shadow-md custom-sidebar`}>
         <div className="mx-auto px-6 py-3 flex justify-between items-center">
           <div
-            className="text-xl font-bold text-gray-800 cursor-pointer"
+            className="text-xl text-gray-800 px-6 py-3 font-bold text-gray-800 cursor-pointer relative group"
             onClick={() => {
               navigate("/");
             }}
           >
-            Work Sync
+            <span className="relative z-10">Work Sync</span>
+            <span className="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 rounded-full group-hover:opacity-50"></span>
           </div>
+
           <div className="block lg:hidden">
             <button
               className="text-gray-800 focus:outline-none"
@@ -47,29 +49,35 @@ const SideBar = () => {
               {accessToken ? (
                 <>
                   <li
-                    className="block text-gray-800 py-2 px-4 cursor-pointer"
+                    className="font-bold text-gray-800 py-2 px-4 cursor-pointer relative group"
                     onClick={() => {
                       navigate("/employee-list");
                     }}
                   >
-                    Employees
+                    <span className="relative z-10">Employees</span>
+                    <span className="absolute inset-0 w-full h-full bg-gray-200 opacity-0 transition-opacity duration-300 rounded-full group-hover:opacity-50"></span>
                   </li>
+
                   <li
-                    className="block text-gray-800 py-2 px-4 cursor-pointer"
+                    className="font-bold text-gray-800 py-2 px-4 cursor-pointer relative group"
                     onClick={() => {
                       navigate("/vendor-list");
                     }}
                   >
-                    Vendors
+                    <span className="relative z-10">Vendors</span>
+                    <span className="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 rounded-full group-hover:opacity-50"></span>
                   </li>
+
                   <li
-                    className="block text-gray-800 py-2 px-4 cursor-pointer"
+                    className="font-bold text-gray-800 py-2 px-4 cursor-pointer relative group"
                     onClick={() => {
                       navigate("/emails");
                     }}
                   >
-                    Emails
+                    <span className="relative z-10">Emails</span>
+                    <span className="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 rounded-full group-hover:opacity-50"></span>
                   </li>
+
                   <li>
                     <Profile />
                   </li>
@@ -77,12 +85,13 @@ const SideBar = () => {
               ) : (
                 <>
                   <li
-                    className="block text-gray-800 py-2 px-4 cursor-pointer"
+                    className="font-bold text-gray-800 py-2 px-4 cursor-pointer relative group"
                     onClick={() => {
                       navigate("/signUp-form");
                     }}
                   >
-                    SignUp
+                    <span className="relative z-10">SignUp</span>
+                    <span className="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 rounded-full group-hover:opacity-50"></span>
                   </li>
                 </>
               )}
