@@ -58,7 +58,7 @@ const LoginForm = ({ isSignUp }) => {
   return (
     <form
       onSubmit={handleClick}
-      className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-20"
+      className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-24"
     >
       <h2 className="text-2xl flex justify-center font-bold mb-6 text-gray-800">
         {" "}
@@ -66,39 +66,33 @@ const LoginForm = ({ isSignUp }) => {
       </h2>
       {isSignUp && (
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700">
-            Name
-          </label>
           <input
             type="text"
             name="name"
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+            placeholder="Name"
             required
           />
         </div>
       )}
       <div className="mb-4">
-        <label htmlFor="email" className="block text-gray-700">
-          Email
-        </label>
         <input
           type="email"
           name="email"
           onChange={handleChange}
           className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+          placeholder="Email"
           required
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="password" className="block text-gray-700">
-          Password
-        </label>
         <input
           type="password"
           name="password"
           onChange={handleChange}
           className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+          placeholder="Password"
           required
         />
       </div>

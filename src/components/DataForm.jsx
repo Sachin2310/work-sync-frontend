@@ -70,39 +70,33 @@ const Form = ({ userform, onClose }) => {
         </h2>
         <div>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700">
-              Name
-            </label>
             <input
               type="text"
               name="name"
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+              placeholder="Name"
               required
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700">
-              Email
-            </label>
             <input
               type="email"
               name="email"
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+              placeholder="Email"
               required
             />
           </div>
           {userform === "vendor" && (
             <div className="mb-4">
-              <label htmlFor="upi" className="block text-gray-700">
-                UPI
-              </label>
               <input
                 type="text"
                 name="upi"
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+                placeholder="UPI"
                 required
               />
             </div>
@@ -110,26 +104,22 @@ const Form = ({ userform, onClose }) => {
           {userform === "employee" && (
             <>
               <div className="mb-4">
-                <label htmlFor="designation" className="block text-gray-700">
-                  Designation
-                </label>
                 <input
                   type="text"
                   name="designation"
                   onChange={handleChange}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+                  placeholder="Designation"
                   required
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="CTC" className="block text-gray-700">
-                  CTC
-                </label>
                 <input
                   type="number"
                   name="CTC"
                   onChange={handleChange}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-indigo-500"
+                  placeholder="CTC"
                   required
                 />
               </div>
