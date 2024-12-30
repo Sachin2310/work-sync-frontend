@@ -26,25 +26,36 @@ const LoginForm = ({ isSignUp }) => {
     const RequestBody = {
       ...userDetails,
     };
+    console.log(RequestBody);
+    const response = await userAuthentication(
+      isSignUp ? `/auth/signup` : `/auth/login`,
+      RequestBody
+    );
+    console.log(response);
 
+    if (isSignUp) {
+      navigate("/login-form");
+      return;
+    } else {
+      handleLoginResponse(response, userDetails.email);
+      return;
+    }
+  }
+
+  async function useTestAccountToLogin(e) {
+    e.preventDefault();
+    const RequestBody = {
+      email: "test@test.com",
+      password: 123,
+    };
+    const response = await userAuthentication(`/auth/login`, RequestBody);
+    handleLoginResponse(response, RequestBody.email);
+  }
+
+  async function userAuthentication(url, requestBody) {
+    dispatch(startLoading());
     try {
-      dispatch(startLoading());
-      const response = await axiosClient.post(
-        isSignUp ? `/auth/signup` : `/auth/login`,
-        RequestBody
-      );
-      console.log(response);
-
-      if (isSignUp) {
-        navigate("/login-form");
-        return;
-      } else {
-        dispatch(addToken(response.data));
-        localStorage.setItem("token", response.data.accessToken);
-        localStorage.setItem("current-user", userDetails.email);
-        navigate("/");
-        return;
-      }
+      return await axiosClient.post(url, requestBody);
     } catch (error) {
       setSnackbarOpen(true);
       setAxiosErrorMessage(
@@ -53,6 +64,13 @@ const LoginForm = ({ isSignUp }) => {
     } finally {
       dispatch(stopLoading());
     }
+  }
+
+  function handleLoginResponse(response, userEmail) {
+    dispatch(addToken(response.data));
+    localStorage.setItem("token", response.data.accessToken);
+    localStorage.setItem("current-user", userEmail);
+    navigate("/");
   }
 
   return (
@@ -96,6 +114,7 @@ const LoginForm = ({ isSignUp }) => {
           required
         />
       </div>
+
       {isSignUp ? (
         <div className="flex justify-center mb-3 mt-8 text-gray-800">
           Already have an account?{" "}
@@ -118,6 +137,16 @@ const LoginForm = ({ isSignUp }) => {
         >
           {isSignUp ? "SignUp" : "Login"}
         </button>
+      </div>
+      <p className="text-center mt-6">OR</p>
+      <div className="flex justify-center mt-4">
+        <a
+          href="#"
+          onClick={useTestAccountToLogin}
+          className="block w-52 text-center bg-indigo-400 text-white py-1 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+        >
+          Use a test account instead
+        </a>
       </div>
       <ErrorSnackbar
         errorMessage={axiosErrorMessage}
